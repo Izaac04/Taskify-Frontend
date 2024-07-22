@@ -1,4 +1,4 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import logo from '../assets/tasks.png';
 import {useContext} from "react";
 import AuthContext from "../context/AuthContext.jsx";
@@ -8,6 +8,17 @@ function Navbar() {
         : 'text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
 
     const { logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        const confirmLogout = window.confirm("Are you sure you want to logout?");
+        if (confirmLogout) {
+            logout();
+        }
+        navigate('/');
+    }
 
     return (
         <nav className="bg-gray-900 border-b border-gray-800">
@@ -26,7 +37,7 @@ function Navbar() {
                                 <NavLink to="/completed-tasks" className={linkClass}>Completed Tasks</NavLink>
                                 <NavLink to="/doItNow-tasks" className={linkClass}>Do It Now</NavLink>
                                 <NavLink to="/add-task" className={linkClass}>Add Task</NavLink>
-                                <NavLink to="/"  onClick={logout} className={linkClass}>Logout</NavLink>
+                                <NavLink to="/"  onClick={handleLogout} className={linkClass}>Logout</NavLink>
                             </div>
                         </div>
                     </div>
@@ -36,4 +47,4 @@ function Navbar() {
     )
 }
 
-export default Navbar
+export default Navbar;
