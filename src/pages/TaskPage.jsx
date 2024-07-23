@@ -73,7 +73,7 @@ const TaskPage = ({ deleteTask }) => {
 
                                 {task.isImportant && (
                                     <p className="text-red-700 font-bold flex items-center justify-center">
-                                        This task is important!
+                                        This task is important
                                         <FaExclamation className="mr-3" />
                                     </p>
                                 )}
